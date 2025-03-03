@@ -1,0 +1,147 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+/* ✅ Logo + Brand Name */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+/* ✅ Centered Search Bar */
+.search-bar {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  margin: 0 20px;
+  margin-left: 310px;
+}
+
+.search-bar input {
+  width: 400px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  font-size: 1rem;
+  background-color: white;
+  color: black;
+}
+
+.search-bar input::placeholder {
+  color: #888;
+}
+
+.search-bar button {
+  background-color: #f9f9f9;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  color: white;
+}
+.search-bar button:hover{
+  background-color: rgb(229, 223, 223);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  color: white;
+}
+/* ✅ Navigation Links & Auth Buttons */
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ✅ Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.nav-links li a:hover {
+  color: #f4a261;
+}
+
+/* ✅ Login & Signup Buttons */
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.auth-buttons .login-btn,
+.auth-buttons .signup-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-btn {
+  background-color: rgb(52, 178, 52);
+  color: white;
+  border: 1px solid white;
+}
+
+.signup-btn {
+  background-color: #e76f51;
+  color: white;
+  border: none;
+}
+
+.login-btn:hover {
+  background-color:rgb(49, 152, 49) ;
+  color: white;
+}
+
+.signup-btn:hover {
+  background-color: #e76f51;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .search-bar input {
+    width: 80%;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+  }
+}
