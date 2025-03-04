@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className={`nav-section ${menuOpen ? "open" : ""}`}>
         <ul className="nav-links">
           <li><Link href="/Home">Home</Link></li>
-          <li><Link href="/products">Products</Link></li>
+          <li><Link href="/Products">Products</Link></li>
           <li><Link href="/Cart">Cart</Link></li>
           <li><Link href="/contact">Contact</Link></li>
         </ul>

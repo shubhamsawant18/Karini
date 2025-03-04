@@ -1,14 +1,14 @@
+/* Cart.css */
+
 .cartContainer {
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
     min-height: 100vh;
     padding: 20px;
   }
   
   .cartSidebar {
     width: 25%;
-    display: flex;
-    flex-direction: column;
     padding-right: 10px;
   }
   
@@ -19,13 +19,13 @@
   
   .cartSidebar a {
     display: block;
-    margin-bottom: 10px;
-    color: #007bff;
+    margin-bottom: 8px;
+    color: #333;
     text-decoration: none;
   }
   
   .cartSidebar a:hover {
-    text-decoration: underline;
+    color: #007bff;
   }
   
   .cartMain {
@@ -35,32 +35,26 @@
   .cartTitle {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .cartShopLink {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .cartShopLink:hover {
-    text-decoration: underline;
+    margin-bottom: 16px;
   }
   
   .cartItems {
     display: grid;
-    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
   
   .cartItem {
     display: flex;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
   }
   
   .cartImageContainer {
-    width: 30%;
+    flex: 1 1 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,8 +62,8 @@
   }
   
   .cartDetails {
-    width: 70%;
-    padding: 15px;
+    flex: 2 1 200px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -78,36 +72,31 @@
   .cartItemName {
     font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 5px;
   }
   
-  .cartPrice {
-    color: #333;
-  }
-  
+  .cartPrice,
   .cartDiscount {
-    color: #28a745;
-    font-weight: bold;
+    color: #555;
   }
   
   .cartActions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 10px;
   }
   
   .cartRemove {
-    background-color: #dc3545;
+    background: #ff4d4d;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 8px 12px;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 5px;
   }
   
   .cartRemove:hover {
-    background-color: #c82333;
+    background: #cc0000;
   }
   
   .cartTotal {
@@ -119,16 +108,64 @@
   }
   
   .cartCheckoutButton {
-    background-color: #007bff;
+    display: inline-block;
+    background: #007bff;
     color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
+    padding: 10px 16px;
     border-radius: 5px;
+    text-decoration: none;
   }
   
   .cartCheckoutButton:hover {
-    background-color: #0056b3;
+    background: #0056b3;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .cartContainer {
+      flex-direction: column;
+    }
+    
+    .cartSidebar {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    .cartMain {
+      width: 100%;
+    }
+  
+    .cartItem {
+      flex-direction: column;
+    }
+  
+    .cartImageContainer {
+      width: 100%;
+      padding: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .cartItems {
+      grid-template-columns: 1fr;
+    }
+  
+    .cartDetails {
+      text-align: center;
+    }
+  
+    .cartActions {
+      flex-direction: column;
+    }
+  
+    .cartRemove {
+      width: 100%;
+      margin-top: 8px;
+    }
+  
+    .cartCheckoutButton {
+      width: 100%;
+      text-align: center;
+    }
   }
   

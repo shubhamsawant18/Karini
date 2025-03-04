@@ -37,7 +37,7 @@ const Cart = () => {
 
         {cartItems.length === 0 ? (
           <p>
-            Your cart is empty.{" "}
+            Your cart is empty. {" "}
             <a href="/shop" className="cartShopLink">
               Continue shopping
             </a>
