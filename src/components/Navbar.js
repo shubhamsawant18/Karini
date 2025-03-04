@@ -40,8 +40,9 @@ const Navbar = () => {
         <Link href="/login">
   <button className="login-btn">Login</button>
 </Link>
-
+        <Link href="/Signup">
           <button className="signup-btn" aria-label="Sign Up">Sign Up</button>
+          </Link>
         </div>
       </div>
     </nav>

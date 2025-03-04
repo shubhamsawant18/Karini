@@ -8,7 +8,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="signup-container">
+    <div className="signup-page-container">
       <div className="signup-box">
         <h2 className="signup-header">Create an Account</h2>
         <p className="signup-text">Join us today!</p>

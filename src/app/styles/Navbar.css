@@ -111,12 +111,12 @@
 
 /* ✅ Orange Signup Button */
 .signup-btn {
-  background-color: #f4a261;
+  background-color: #e76f51;
   color: white;
 }
 
 .signup-btn:hover {
-  background-color: #e76f51;
+  background-color: #da4520;
 }
 
 /* ✅ Mobile Menu Toggle */

@@ -31,7 +31,7 @@ export default function Login() {
           </button>
         </form>
         <div className="login-footer">
-          <p>Don't have an account? <a href="#">Sign Up</a></p>
+          <p>Don't have an account? <a href="/Signup">Sign Up</a></p>
         </div>
       </div>
     </div>
