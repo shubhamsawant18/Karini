@@ -1,5 +1,5 @@
-// src/app/layout.js
-import Navbar from "../../components/Navbar"; 
+import Navbar from "../components/Navbar"; 
+
 
 import "./globals.css";
 
@@ -8,7 +8,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Navbar />
-        {children}
+        {children} {/* ✅ This renders the page content */}
       </body>
     </html>
   );

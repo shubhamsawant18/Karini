@@ -1,37 +1,34 @@
-"use client"; // ✅ Fix for useState in Next.js
+"use client";
+
 
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import "../src/app/styles/Navbar.css"; // ✅ Correct Path
+import "../app/styles/Navbar.css";
+
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <nav className="navbar">
-      {/* ✅ Logo with Brand Name */}
       <div className="logo">
         <Link href="/">
-          <Image src="/image/logo-chanel.png" alt="MyStore Logo" width={50} height={44} />
+          <Image src="/image/logo-chanel.png" alt="Logo" width={50} height={44} priority />
         </Link>
         <span className="brand-name">KARINI AI</span>
       </div>
 
-      {/* ✅ Search Bar */}
       <div className="search-bar">
         <input type="text" placeholder="Search for products..." />
-        <button>🔍</button>
+        <button aria-label="Search">🔍</button>
       </div>
 
-      {/* ✅ Mobile Menu Toggle Button */}
-      <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+      <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Menu">
         ☰
-      </div>
+      </button>
 
-      {/* ✅ Navigation and Auth in One Row (Collapsible in Mobile) */}
       <div className={`nav-section ${menuOpen ? "open" : ""}`}>
-        {/* Navigation Links */}
         <ul className="nav-links">
           <li><Link href="/">Home</Link></li>
           <li><Link href="/products">Products</Link></li>
@@ -39,10 +36,12 @@ const Navbar = () => {
           <li><Link href="/contact">Contact</Link></li>
         </ul>
 
-        {/* Auth Buttons */}
         <div className="auth-buttons">
-          <button className="login-btn">Login</button>
-          <button className="signup-btn">Sign Up</button>
+        <Link href="/login">
+  <button className="login-btn">Login</button>
+</Link>
+
+          <button className="signup-btn" aria-label="Sign Up">Sign Up</button>
         </div>
       </div>
     </nav>
