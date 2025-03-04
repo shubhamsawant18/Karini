@@ -5,12 +5,20 @@
   padding: 10px 20px;
   background-color: #333;
   color: white;
+  position: relative;
 }
 
-/* ✅ Logo + Brand Name */
+/* ✅ Logo Section */
 .logo {
   display: flex;
   align-items: center;
+}
+
+.logo a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .brand-name {
@@ -27,7 +35,6 @@
   flex-grow: 1;
   justify-content: center;
   margin: 0 20px;
-  margin-left: 310px;
 }
 
 .search-bar input {
@@ -51,18 +58,10 @@
   padding: 10px 15px;
   cursor: pointer;
   border-radius: 0 5px 5px 0;
-  color: white;
 }
-.search-bar button:hover{
-  background-color: rgb(229, 223, 223);
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 0 5px 5px 0;
-  color: white;
-}
-/* ✅ Navigation Links & Auth Buttons */
-.nav-container {
+
+/* ✅ NAVIGATION & BUTTONS IN ONE ROW */
+.nav-section {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -100,20 +99,19 @@
   font-weight: bold;
 }
 
+/* ✅ Green Login Button */
 .login-btn {
-  background-color: rgb(52, 178, 52);
+  background-color: #28a745;
   color: white;
-  border: 1px solid white;
-}
-
-.signup-btn {
-  background-color: #e76f51;
-  color: white;
-  border: none;
 }
 
 .login-btn:hover {
-  background-color:rgb(49, 152, 49) ;
+  background-color: #218838;
+}
+
+/* ✅ Orange Signup Button */
+.signup-btn {
+  background-color: #f4a261;
   color: white;
 }
 
@@ -121,27 +119,66 @@
   background-color: #e76f51;
 }
 
+/* ✅ Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
 /* ✅ Responsive Design */
+@media (max-width: 1024px) {
+  .search-bar input {
+      width: 300px;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    gap: 15px;
+      flex-direction: column;
+      gap: 15px;
   }
 
   .search-bar {
-    width: 100%;
+      width: 100%;
+      justify-content: center;
   }
 
   .search-bar input {
-    width: 80%;
+      width: 80%;
+  }
+
+  /* ✅ Show Menu Button */
+  .menu-toggle {
+      display: block;
+  }
+
+  /* ✅ Hide Nav by Default */
+  .nav-section {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #444;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 10px 0;
+      text-align: center;
+  }
+
+  .nav-section.open {
+      display: flex;
   }
 
   .nav-links {
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
+      gap: 10px;
   }
 
   .auth-buttons {
-    flex-direction: column;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
   }
 }

@@ -1,11 +1,16 @@
+"use client"; // ✅ Fix for useState in Next.js
+
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image"; // ✅ Import Next.js Image
+import Image from "next/image";
 import "../src/app/styles/Navbar.css"; // ✅ Correct Path
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <nav className="navbar">
-      {/* ✅ Logo with Text */}
+      {/* ✅ Logo with Brand Name */}
       <div className="logo">
         <Link href="/">
           <Image src="/image/logo-chanel.png" alt="MyStore Logo" width={50} height={44} />
@@ -19,8 +24,14 @@ const Navbar = () => {
         <button>🔍</button>
       </div>
 
-      {/* ✅ Navigation Links + Login/Signup */}
-      <div className="nav-container">
+      {/* ✅ Mobile Menu Toggle Button */}
+      <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+        ☰
+      </div>
+
+      {/* ✅ Navigation and Auth in One Row (Collapsible in Mobile) */}
+      <div className={`nav-section ${menuOpen ? "open" : ""}`}>
+        {/* Navigation Links */}
         <ul className="nav-links">
           <li><Link href="/">Home</Link></li>
           <li><Link href="/products">Products</Link></li>
@@ -28,14 +39,10 @@ const Navbar = () => {
           <li><Link href="/contact">Contact</Link></li>
         </ul>
 
-        {/* ✅ Login & Signup Buttons */}
+        {/* Auth Buttons */}
         <div className="auth-buttons">
-          <Link href="/login">
-            <button className="login-btn">Login</button>
-          </Link>
-          <Link href="/signup">
-            <button className="signup-btn">Sign Up</button>
-          </Link>
+          <button className="login-btn">Login</button>
+          <button className="signup-btn">Sign Up</button>
         </div>
       </div>
     </nav>
