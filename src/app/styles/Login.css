@@ -1,4 +1,4 @@
-/* Background */
+
 .login-page-container {
   background: url("/image/loginbg.jpg") no-repeat center center/cover;
   display: flex;
@@ -8,7 +8,7 @@
   padding: 20px;
 }
 
-/* Glassmorphism Box */
+
 .login-box {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -21,7 +21,7 @@
   max-width: 90%;
 }
 
-/* Heading */
+
 .loginenter {
   font-size: 24px;
   font-weight: bold;
@@ -29,14 +29,14 @@
   margin-bottom: 10px;
 }
 
-/* Paragraph */
+
 .loginp {
   font-size: 16px;
   color: black;
   margin-bottom: 20px;
 }
 
-/* Form */
+
 form {
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@ form {
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* Unique Button Styling */
+
 .login-button {
   background: linear-gradient(135deg, orange, orange);
   color: white;
@@ -78,7 +78,7 @@ form {
   background: linear-gradient(135deg, orange, #ff758c);
 }
 
-/* Footer */
+
 .login-footer {
   margin-top: 15px;
 }
@@ -89,7 +89,7 @@ form {
   font-weight: bold;
 }
 
-/* 📌 Responsive Design */
+
 @media (max-width: 768px) {
   .login-box {
     width: 90%;
