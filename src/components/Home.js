@@ -15,20 +15,62 @@ export default function Home() {
 
   // Login state
   const [loginData, setLoginData] = useState({
-    username: "",
+    usernameOrEmail: "",
     password: "",
   });
 
   // Handle signup
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    router.push("/login"); // Redirect after signup
+
+    try {
+      const response = await fetch("http://localhost:5000/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signupData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("User created successfully");
+        router.push("/login"); // Redirect to login page
+      } else {
+        alert(data.message || "User already exists. Please login.");
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   // Handle login
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Login clicked");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Login successful");
+        router.push("http://localhost:3000/Products"); // Redirect to Products page
+      } else {
+        alert(data.message || "Invalid credentials. Please try again.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -44,24 +86,35 @@ export default function Home() {
               type="text"
               placeholder="Username"
               value={signupData.username}
-              onChange={(e) => setSignupData({ ...signupData, username: e.target.value })}
+              onChange={(e) =>
+                setSignupData({ ...signupData, username: e.target.value })
+              }
               className="karini-input"
+              required
             />
             <input
               type="email"
               placeholder="Email"
               value={signupData.email}
-              onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
+              onChange={(e) =>
+                setSignupData({ ...signupData, email: e.target.value })
+              }
               className="karini-input"
+              required
             />
             <input
               type="password"
               placeholder="Password"
               value={signupData.password}
-              onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
+              onChange={(e) =>
+                setSignupData({ ...signupData, password: e.target.value })
+              }
               className="karini-input"
+              required
             />
-            <button type="submit" className="karini-button">Sign Up</button>
+            <button type="submit" className="karini-button">
+              Sign Up
+            </button>
           </form>
         </div>
 
@@ -72,19 +125,27 @@ export default function Home() {
           <form onSubmit={handleLogin}>
             <input
               type="text"
-              placeholder="Username"
-              value={loginData.username}
-              onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
+              placeholder="Username or Email"
+              value={loginData.usernameOrEmail}
+              onChange={(e) =>
+                setLoginData({ ...loginData, usernameOrEmail: e.target.value })
+              }
               className="karini-input"
+              required
             />
             <input
               type="password"
               placeholder="Password"
               value={loginData.password}
-              onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+              onChange={(e) =>
+                setLoginData({ ...loginData, password: e.target.value })
+              }
               className="karini-input"
+              required
             />
-            <button type="submit" className="karini-button">Login</button>
+            <button type="submit" className="karini-button">
+              Login
+            </button>
           </form>
         </div>
       </div>
