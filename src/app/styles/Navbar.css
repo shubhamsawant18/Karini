@@ -99,25 +99,34 @@
   font-weight: bold;
 }
 
-
 .login-btn {
   background-color: #28a745;
   color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .login-btn:hover {
   background-color: #218838;
 }
 
-
-.signup-btn {
-  background-color: #e76f51;
+.logout-btn {
+  background-color: red;
   color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.signup-btn:hover {
-  background-color: #da4520;
+.logout-btn:hover {
+  background-color: darkred;
 }
+
 
 
 .menu-toggle {

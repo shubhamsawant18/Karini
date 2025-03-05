@@ -1,14 +1,28 @@
 "use client";
 
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 import "../app/styles/Navbar.css";
 
-
 const Navbar = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    setIsLoggedIn(!!token);
+  }, [pathname]);
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    setIsLoggedIn(false);
+    router.push("/login");
+  };
 
   return (
     <nav className="navbar">
@@ -37,10 +51,13 @@ const Navbar = () => {
         </ul>
 
         <div className="auth-buttons">
-        <Link href="/login">
-  <button className="login-btn">Login</button>
-</Link>
-       
+          {pathname === "/Products" || pathname === "/Cart" ? (
+            <button className="logout-btn" onClick={handleLogout}>Logout</button>
+          ) : (
+            <Link href="/login">
+              <button className="login-btn">Login</button>
+            </Link>
+          )}
         </div>
       </div>
     </nav>

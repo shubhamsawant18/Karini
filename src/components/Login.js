@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import "../app/styles/Login.css"; // ✅ Correct CSS path
+import Cookies from "js-cookie"; // ✅ Import js-cookie
+import "../app/styles/Login.css"; 
 
 export default function Login() {
   const router = useRouter();
@@ -27,7 +28,8 @@ export default function Login() {
 
       if (response.ok) {
         alert("Login successful");
-        router.push("http://localhost:3000/Products"); // Redirect to Products page
+        Cookies.set("token", data.token, { expires: 7 }); // ✅ Store token in cookies
+        router.push("/Products"); // Redirect to Products page
       } else {
         alert(data.message || "Invalid credentials. Please try again.");
       }
