@@ -1,9 +1,9 @@
-const Cart = require("../models/cart-model"); // Corrected the require path
+const Cart = require("../models/cart-model");
 
-// GET all cart items
+// ✅ GET all cart items
 exports.getCartItems = async (req, res) => {
   try {
-    const cartItems = await Cart.find().populate("productId userId"); // Populate both product & user data
+    const cartItems = await Cart.find().populate("productId userId");
 
     if (!cartItems.length) {
       return res.status(404).json({ message: "No cart items found" });
@@ -15,7 +15,7 @@ exports.getCartItems = async (req, res) => {
   }
 };
 
-// POST a new item to cart
+// ✅ POST: Add an item to the cart
 exports.addCartItem = async (req, res) => {
   try {
     const { userId, productId, quantity, address } = req.body;
@@ -26,13 +26,14 @@ exports.addCartItem = async (req, res) => {
 
     const newItem = new Cart({ userId, productId, quantity, address });
     await newItem.save();
-    res.status(201).json(newItem);
+    
+    res.status(201).json({ message: "Item added to cart", cart: newItem });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
 
-// PUT (update) a cart item
+// ✅ PUT: Update cart item
 exports.updateCartItem = async (req, res) => {
   try {
     const { quantity, address } = req.body;
@@ -43,20 +44,20 @@ exports.updateCartItem = async (req, res) => {
 
     const updatedItem = await Cart.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-      runValidators: true, // Ensures schema validation
+      runValidators: true,
     });
 
     if (!updatedItem) {
       return res.status(404).json({ message: "Cart item not found" });
     }
 
-    res.json(updatedItem);
+    res.json({ message: "Cart item updated", cart: updatedItem });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
 
-// DELETE a cart item
+// ✅ DELETE: Remove cart item
 exports.deleteCartItem = async (req, res) => {
   try {
     const deletedItem = await Cart.findByIdAndDelete(req.params.id);
