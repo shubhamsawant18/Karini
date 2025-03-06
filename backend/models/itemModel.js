@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-    handle: { type: String, required: true, unique: true },
+    handle: {  },
     title: {},
     body: {},
     vendor: {},
@@ -20,5 +20,5 @@ const productSchema = new mongoose.Schema({
     imageSrc: {}
 }, { strict: false }); // Allow any additional fields
 
-const Product = mongoose.model("Product", productSchema);
+const Product = mongoose.model("items", productSchema);
 module.exports = Product;

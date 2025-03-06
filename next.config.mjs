@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "cdn.shopify.com", // ✅ Allow external Shopify images
+      },
+    ],
+  },
     async redirects() {
       return [
         {

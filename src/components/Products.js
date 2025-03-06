@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import "../app/styles/Products.css";
 
 const Products = () => {
@@ -84,11 +85,18 @@ const Products = () => {
         {products && products.length > 0 ? (
           <div className="homeProductGrid">
             {products.map((product, index) => (
-              <div key={index} className="homeCard" title={product.body}>
-                <h2 className="homeTitle">{product.title}</h2>
-                <p className="homeBody">{product.body}</p>
-                <p className="homeType">Type: {product.type}</p>
-                <p className="homeProductPrice">Price: {product.variantPrice}</p>
+              <div key={index} className="homeCard">
+                <Image
+                  src={product['Image Src']}
+                  alt={product.title}
+                  width={200}
+                  height={200}
+                  className="homeImage"
+                />
+                <h2 className="homeTitle">{product.Title}</h2>
+                <p className="homeBody">{product.Body}</p>
+                <p className="homeType">Type: {product.Type}</p>
+                <p className="homeProductPrice">Price: {product['Variant Price']}</p>
                 <p className="homeDiscount">{product.discount}</p>
                 <button className="homeButton">Add to Cart</button>
               </div>
