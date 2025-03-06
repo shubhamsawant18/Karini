@@ -5,9 +5,9 @@ const {
     deleteProduct,
 } = require('../controllers/itemController');
 const express = require('express');
+const validateToken = require('../middleware/isLoggedIn');
 
 const router = express.Router();
-
 router.get('/', getProducts);
 
 router.post('/', postProduct);

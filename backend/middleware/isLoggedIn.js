@@ -1,31 +1,28 @@
-const jwt = require("jsonwebtoken");
-const userModel = require("../models/user-model");
+const jwt = require('jsonwebtoken');
 
-module.exports = async function (req, res, next) {
+const validateToken = async (req, res, next) => {
   try {
-    // Ensure token exists
-    const token = req.cookies?.token;
-    if (!token) {
-      return res.status(401).json({ error: "Unauthorized, please log in first" });
+    let authHeader = req.headers.authorization || req.headers.Authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer")) {
+      return res.status(401).json({ error: "Access denied: No token provided" });
     }
 
-    // Verify JWT
-    const decoded = jwt.verify(token, process.env.JWT_KEY);
-    if (!decoded) {
-      return res.status(401).json({ error: "Invalid token" });
-    }
+    const token = authHeader.split(" ")[1];
 
-    // Find the user (excluding password)
-    const user = await userModel.findOne({ email: decoded.email }).select("-password");
-    if (!user) {
-      return res.status(401).json({ error: "User not found" });
-    }
+    jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+      if (err) {
+        console.log("JWT Verification Error:", err.message);
+        return res.status(401).json({ error: "Unauthorized user" });
+      }
 
-    // Attach user data to request object
-    req.user = user;
-    next();
-  } catch (err) {
-    console.error("Auth error:", err);
-    return res.status(401).json({ error: "Invalid or expired token" });
+      req.user = decoded;  // ✅ Attach user data correctly
+      next();
+    });
+
+  } catch (e) {
+    console.log("Token validation error:", e.message);
+    return res.status(500).json({ error: "Server error during token validation" });
   }
 };
+
+module.exports = validateToken;
