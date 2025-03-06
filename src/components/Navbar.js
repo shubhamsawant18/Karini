@@ -3,15 +3,18 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 import "../app/styles/Navbar.css";
 
 const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -24,6 +27,13 @@ const Navbar = () => {
     router.push("/login");
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/Products?q=${searchQuery}`);
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="logo">
@@ -33,10 +43,16 @@ const Navbar = () => {
         <span className="brand-name">KARINI AI</span>
       </div>
 
-      <div className="search-bar">
-        <input type="text" placeholder="Search for products..." />
-        <button aria-label="Search">🔍</button>
-      </div>
+      {/* Search Bar */}
+      <form className="search-bar" onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Search for products..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <button type="submit" aria-label="Search">🔍</button>
+      </form>
 
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Menu">
         ☰
@@ -51,7 +67,7 @@ const Navbar = () => {
         </ul>
 
         <div className="auth-buttons">
-          {pathname === "/Products" || pathname === "/Cart" ? (
+          {isLoggedIn ? (
             <button className="logout-btn" onClick={handleLogout}>Logout</button>
           ) : (
             <Link href="/login">
