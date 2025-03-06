@@ -12,6 +12,7 @@ const postProduct = async(req, res)=>{
 
 const getProducts = async (req, res) => {
     try {
+       
         const { search } = req.query;
         let query = {};
 

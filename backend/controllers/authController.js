@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { JWT_KEY } = require("../config/keys");
 const User = require("../models/user-model");
 
 module.exports.registerUser = async function (req, res) {
@@ -27,7 +26,7 @@ module.exports.registerUser = async function (req, res) {
 
         await newUser.save();
 
-        let token = jwt.sign({ username, email, id: newUser._id }, JWT_KEY, { expiresIn: '1h' });
+        let token = jwt.sign({ username, email, id: newUser._id }, process.env.JWT_KEY, { expiresIn: '1h' });
         res.cookie("token", token, { httpOnly: true });
 
         res.status(201).json({ message: "User registered successfully", user: { username, email }, token });
@@ -50,7 +49,7 @@ module.exports.loginUser = async function (req, res) {
             return res.status(401).json({ error: "Incorrect password" });
         }
 
-        let token = jwt.sign({ username: user.username, email: user.email, id: user._id }, JWT_KEY, { expiresIn: '1h' });
+        let token = jwt.sign({ username: user.username, email: user.email, id: user._id }, process.env.JWT_KEY, { expiresIn: '1h' });
         res.cookie("token", token, { httpOnly: true });
 
         res.status(200).json({ message: "Logged in successfully", user: { username: user.username, email: user.email }, token });
