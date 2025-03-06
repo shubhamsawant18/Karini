@@ -47,7 +47,7 @@ const Navbar = () => {
           <li><Link href="/Home">Home</Link></li>
           <li><Link href="/Products">Products</Link></li>
           <li><Link href="/Cart">Cart</Link></li>
-          <li><Link href="/contact">Contact</Link></li>
+          <li><Link href="/owner">Owner</Link></li>
         </ul>
 
         <div className="auth-buttons">
