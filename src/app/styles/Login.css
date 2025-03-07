@@ -32,20 +32,18 @@
   margin-bottom: 20px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
 .login-input {
+  width: 100%; /* Makes both input fields same width */
   padding: 12px;
-  margin: 8px 0;
+  margin: 10px 0; /* Adds spacing between fields */
   border: none;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
   font-size: 16px;
   outline: none;
+  display: block; /* Ensures proper alignment */
+  text-align: center;
 }
 
 .login-input::placeholder {
@@ -56,22 +54,26 @@ form {
   background: rgba(255, 255, 255, 0.3);
 }
 
+/* Login button styling */
 .login-button {
+  width: 100%; /* Matches input width */
   background: linear-gradient(135deg, orange, orange);
   color: white;
   border: none;
   padding: 12px;
-  margin-top: 10px;
+  margin-top: 15px; /* Ensures space below inputs */
   font-size: 16px;
   cursor: pointer;
   border-radius: 6px;
   transition: 0.3s;
+  display: block;
 }
 
 .login-button:hover {
   background: linear-gradient(135deg, orange, #ff758c);
 }
 
+/* Footer for sign-up link */
 .login-footer {
   margin-top: 15px;
 }
