@@ -5,18 +5,16 @@ import "../app/styles/Cart.css";
 const cartItems = [
   {
     id: "1",
-    name: "Stylish Shirt",
+    title: "Stylish Shirt",
+    body: "Comfortable and trendy shirt for all occasions.",
     price: 299,
-    discount: 10,
-    bgcolor: "#f8f8f8",
     image: "/image/shirt.jpg",
   },
   {
     id: "2",
-    name: "Casual Shirt",
+    title: "Casual Shirt",
+    body: "Perfect for a relaxed day out.",
     price: 199,
-    discount: 5,
-    bgcolor: "#f0f0f0",
     image: "/image/shirt.jpg",
   },
 ];
@@ -46,39 +44,17 @@ const Cart = () => {
           <div className="cartItems">
             {cartItems.map((item) => (
               <div key={item.id} className="cartItem">
-                <div
-                  className="cartImageContainer"
-                  style={{ backgroundColor: item.bgcolor }}
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    width={120}
-                    height={120}
-                  />
-                </div>
-
+                <Image src={item.image} alt={item.title} width={150} height={150} />
                 <div className="cartDetails">
-                  <h3 className="cartItemName">{item.name}</h3>
+                  <h3 className="cartItemTitle">{item.title}</h3>
+                  <p className="cartBody">{item.body}</p>
                   <p className="cartPrice">Price: ₹{item.price}</p>
-                  {item.discount && (
-                    <p className="cartDiscount">Discount: {item.discount}% off</p>
-                  )}
-                  <div className="cartActions">
-                    <button className="cartRemove">Remove</button>
-                    <p className="cartTotal">Total: ₹{item.price}</p>
-                  </div>
+                  <button className="cartRemove">Remove</button>
                 </div>
               </div>
             ))}
           </div>
         )}
-
-        <div className="cartCheckout">
-          <a href="/checkout" className="cartCheckoutButton">
-            Proceed to Checkout
-          </a>
-        </div>
       </div>
     </div>
   );

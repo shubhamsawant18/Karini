@@ -7,10 +7,8 @@ router.use(validateToken);
 router.get("/", cartController.getCartItems);
 
 
-router.post("/", (req, res, next) => {
-    console.log("Received POST request to /api/cart");
-    next();
-  }, cartController.addCartItem);
+router.post("/", cartController.addCartItem);
+
   
 
 

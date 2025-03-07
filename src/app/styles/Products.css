@@ -93,7 +93,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  height: 400px; /* Ensures all cards are the same height */
+  height: 400px;
 }
 
 /* Product Image */
@@ -156,4 +156,122 @@
 
 .homeButton:hover {
   background: #e65c00;
+}
+
+/* RESPONSIVENESS */
+
+/* Tablet View (Below 1024px) */
+@media (max-width: 1024px) {
+  .homeContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .homeSidebar {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .homeFilterText,
+  .homeSearchText {
+    font-size: 14px;
+  }
+
+  .homeSearchBar {
+    width: 45%;
+  }
+
+  .homeDropdown {
+    width: 45%;
+  }
+
+  .homeCheckboxLabel {
+    font-size: 12px;
+  }
+
+  .homeSeeAllButton {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+/* Mobile View (Below 768px) */
+@media (max-width: 768px) {
+  .homeSidebar {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .homeSearchBar,
+  .homeDropdown {
+    width: 90%;
+  }
+
+  .homeProductGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .homeCard {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    padding: 10px;
+  }
+
+  .homeImage {
+    height: 150px;
+  }
+
+  .homeTitle {
+    font-size: 14px;
+  }
+
+  .homeBody {
+    font-size: 12px;
+  }
+
+  .homeTypePrice {
+    font-size: 12px;
+  }
+
+  .homeButton {
+    padding: 8px;
+  }
+}
+
+/* Small Mobile View (Below 480px) */
+@media (max-width: 480px) {
+  .homeProductGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .homeCard {
+    max-width: 100%;
+    padding: 8px;
+  }
+
+  .homeImage {
+    height: 120px;
+  }
+
+  .homeTitle {
+    font-size: 13px;
+  }
+
+  .homeBody {
+    font-size: 11px;
+  }
+
+  .homeButton {
+    font-size: 12px;
+    padding: 6px;
+  }
 }
