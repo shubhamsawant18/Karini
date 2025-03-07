@@ -25,7 +25,7 @@ const Products = () => {
         if (data.data && Array.isArray(data.data)) {
           setProducts(data.data);
         } else {
-          setProducts([]); // Fallback to an empty array if data is incorrect
+          setProducts([]);
         }
       } catch (err) {
         setError(err.message);
@@ -37,7 +37,6 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  // **Filter products based on the search query**
   const filteredProducts = products.filter((product) =>
     product.Title?.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -76,17 +75,6 @@ const Products = () => {
           <input type="checkbox" /> Puma
         </label>
 
-        <span className="homeFilterText">Discount</span>
-        <label className="homeCheckboxLabel">
-          <input type="checkbox" /> 10% Off
-        </label>
-        <label className="homeCheckboxLabel">
-          <input type="checkbox" /> 20% Off
-        </label>
-        <label className="homeCheckboxLabel">
-          <input type="checkbox" /> 30% Off
-        </label>
-
         <button className="homeSeeAllButton">See All Results</button>
       </div>
 
@@ -108,10 +96,15 @@ const Products = () => {
                   className="homeImage"
                 />
                 <h2 className="homeTitle">{product.Title || "No Title"}</h2>
-                <p className="homeBody">{product.Body || "No description available"}</p>
-                <p className="homeType">Type: {product.Type || "N/A"}</p>
-                <p className="homeProductPrice">Price: {product["Variant Price"] || "N/A"}</p>
-                <p className="homeDiscount">{product.discount || "No Discount"}</p>
+                <p className="homeBody">{product.Body ? product.Body.substring(0, 60) + "..." : "No description available"}</p>
+                <div className="homeTypePrice">
+                  <p className="homeType">
+                    <strong>Type:</strong> <span className="boldText">{product.Type || "N/A"}</span>
+                  </p>
+                  <p className="homeProductPrice">
+                    <span className="priceText">$ {product["Variant Price"] || "N/A"}</span>
+                  </p>
+                </div>
                 <button className="homeButton">Add to Cart</button>
               </div>
             ))}

@@ -1,8 +1,9 @@
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie"; // ✅ Import js-cookie
-import "../app/styles/Login.css"; 
+import "../app/styles/Login.css";
 
 export default function Login() {
   const router = useRouter();
@@ -14,7 +15,6 @@ export default function Login() {
   // Handle login
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch("http://localhost:5000/api/users/login", {
         method: "POST",
@@ -70,7 +70,9 @@ export default function Login() {
           </button>
         </form>
         <div className="login-footer">
-          <p>Don't have an account? <a href="/Home">Sign Up</a></p>
+          <p>
+            Don't have an account? <a href="/Home">Sign Up</a>
+          </p>
         </div>
       </div>
     </div>
