@@ -90,6 +90,7 @@ const Products = () => {
     };
 
     const token = Cookies.get("token");
+    console.log(token);
 
     try {
       const response = await fetch("http://localhost:5000/api/cart", {
@@ -149,7 +150,7 @@ const Products = () => {
       </div>
 
       <div className="homeMain">
-        <h1 className="homeH1">Welcome to Our Store</h1>
+      <h1 className="kariniWelcomeText">Welcome to Our Store</h1>
 
         {loading && <p>Loading products...</p>}
         {error && <p className="error">Error: {error}</p>}

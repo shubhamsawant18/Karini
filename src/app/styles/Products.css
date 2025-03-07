@@ -282,3 +282,46 @@
   }
   
 }
+.kariniWelcomeText {
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ff6b6b; /* Elegant red shade */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: -15px;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px 10px rgba(255, 107, 107, 0.7);
+    background: linear-gradient(to right, #ff6b6b, #ffa07a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.kariniProductsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f8f9fa;
+}
+
+.kariniProductGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}

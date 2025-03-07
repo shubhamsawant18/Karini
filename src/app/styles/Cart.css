@@ -38,34 +38,60 @@
 }
 
 .cartTitle {
-  font-size: 24px;
+  font-size: 27px;
+  font-weight: bold;
+  text-align: center;
   margin-bottom: 20px;
+  color: #222;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
+
 
 .cartItems {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
 
+/* Ensuring all cart cards are of the same height */
 .cartItem {
   display: flex;
-  gap: 15px;
+  flex-direction: column;
+  align-items: center;
   background-color: #f8f9fa;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%; /* Ensures all cards are same height */
+  min-height: 350px; /* Minimum height for uniformity */
+  text-align: center;
+}
+
+/* Set a fixed size for images */
+.cartItem img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .cartDetails {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .cartItemTitle {
   font-size: 18px;
-  margin: 0 0 8px 0;
+  margin: 10px 0 8px 0;
 }
 
 .cartBody {
@@ -75,11 +101,13 @@
 }
 
 .cartPrice {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 10px;
+  color: #28a745;
+  margin-bottom: 12px;
 }
 
+/* Button styling */
 .cartRemove {
   padding: 10px 15px;
   background-color: #dc3545;
@@ -88,6 +116,8 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  width: 100%;
+  max-width: 200px;
 }
 
 .cartRemove:hover {
@@ -112,17 +142,15 @@
 @media screen and (max-width: 480px) {
   .cartTitle {
     font-size: 20px;
-    text-align: center;
   }
 
   .cartItem {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    min-height: 300px;
   }
 
-  .cartDetails {
-    align-items: center;
+  .cartItem img {
+    width: 120px;
+    height: 120px;
   }
 
   .cartRemove {

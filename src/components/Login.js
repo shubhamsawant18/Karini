@@ -27,7 +27,7 @@ export default function Login() {
 
       if (response.ok) {
         alert("Login successful");
-        Cookies.set("token", data.token, { expires: 7 }); // ✅ Store token in cookies
+        Cookies.set("token", data.token,); // ✅ Store token in cookies
         router.push("/Products"); // Redirect to Products page
       } else {
         alert(data.message || "Invalid credentials. Please try again.");
