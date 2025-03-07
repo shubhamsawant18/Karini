@@ -131,22 +131,14 @@ const Products = () => {
         <span className="homeFilterText">Discounted Products</span>
         <span className="homeFilterText">New Arrivals</span>
         <span className="homeFilterText">Best Sellers</span>
-        <span className="homeSearchText">Search Your Product</span>
-        <input type="text" placeholder="Search..." className="homeSearchBar" value={searchQuery} readOnly />
 
-        <select className="homeDropdown">
-          <option value="">Filter by Price</option>
-          <option value="0-2000">Below $2000</option>
-          <option value="2000-5000">$2000 - $5000</option>
-          <option value="5000-10000">$5000 - $10000</option>
-        </select>
+       
 
-        <span className="homeFilterText">Brand</span>
-        <label className="homeCheckboxLabel"><input type="checkbox" /> Nike</label>
-        <label className="homeCheckboxLabel"><input type="checkbox" /> Adidas</label>
-        <label className="homeCheckboxLabel"><input type="checkbox" /> Puma</label>
+       
 
-        <button className="homeSeeAllButton">See All Results</button>
+
+
+        
       </div>
 
       <div className="homeMain">
@@ -177,7 +169,7 @@ const Products = () => {
 
         {/* Cart Section */}
         <div className="cartContainer">
-          <h2>Your Cart</h2>
+         
           {cartItems.length > 0 ? (
             <ul>
               {cartItems.map((item, index) => (
@@ -189,7 +181,7 @@ const Products = () => {
               ))}
             </ul>
           ) : (
-            <p>No items in your cart.</p>
+            <p></p>
           )}
         </div>
       </div>
