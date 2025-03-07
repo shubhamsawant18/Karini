@@ -49,7 +49,7 @@ module.exports.loginUser = async function (req, res) {
             return res.status(401).json({ error: "Incorrect password" });
         }
 
-        let token = jwt.sign({ username: user.username, email: user.email, id: user._id }, process.env.JWT_KEY, { expiresIn: '1h' });
+        let token = jwt.sign({ username: user.username, email: user.email, id: user._id }, process.env.JWT_KEY, { expiresIn: '30d' });
         res.cookie("token", token, { httpOnly: true });
 
         res.status(200).json({ message: "Logged in successfully", user: { username: user.username, email: user.email }, token });

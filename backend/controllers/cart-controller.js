@@ -17,7 +17,6 @@ exports.getCartItems = async (req, res) => {
 exports.addCartItem = async (req, res) => {
   try {
     const {  productId, quantity, address } = req.body;
-    console.log("all three params required ", { productId, quantity, address });
 
     if ( !productId || !quantity || !address) {
       return res.status(400).json({ error: "All fields are required" });
