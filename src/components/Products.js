@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import "../app/styles/Products.css";
 
 const Products = () => {
-  const [products, setProducts] = useState([]); 
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
+
+  // Fallback image path
+  const fallbackImage = "/image/tshirt.webp";
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,9 +23,17 @@ const Products = () => {
           throw new Error("Failed to fetch products");
         }
         const data = await response.json();
-        
+
         if (data.data && Array.isArray(data.data)) {
-          setProducts(data.data);
+          // Process and apply fallback values
+          const processedProducts = data.data.map((product) => ({
+            Title: product.Title || "No Title Available",
+            Body: product.Body || "No description available",
+            ImageSrc: product["Image Src"] || fallbackImage,
+            Price: product["Variant Price"] || "Price Not Available",
+            Type: product.Type || "N/A",
+          }));
+          setProducts(processedProducts);
         } else {
           setProducts([]);
         }
@@ -37,9 +47,16 @@ const Products = () => {
     fetchProducts();
   }, []);
 
+  // Filter products based on search query
   const filteredProducts = products.filter((product) =>
-    product.Title?.toLowerCase().includes(searchQuery.toLowerCase())
+    product.Title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // Handle image fallback for missing or failed image loads
+  const handleImageError = (e) => {
+    e.target.src = fallbackImage; // Replace with fallback image
+    e.target.onerror = null; // Prevent infinite loop in case fallback also fails
+  };
 
   return (
     <div className="homeContainer">
@@ -88,21 +105,24 @@ const Products = () => {
           <div className="homeProductGrid">
             {filteredProducts.map((product, index) => (
               <div key={index} className="homeCard">
-                <Image
-                  src={product["Image Src"]}
-                  alt={product.Title || "Product Image"}
-                  width={200}
-                  height={200}
+                <img
+                  src={product.ImageSrc}
+                  alt={product.Title}
+                  onError={handleImageError} // Handle broken image fallback
                   className="homeImage"
                 />
-                <h2 className="homeTitle">{product.Title || "No Title"}</h2>
-                <p className="homeBody">{product.Body ? product.Body.substring(0, 60) + "..." : "No description available"}</p>
+                <h2 className="homeTitle">{product.Title}</h2>
+                <p className="homeBody">
+                  {product.Body.length > 60
+                    ? product.Body.substring(0, 60) + "..."
+                    : product.Body}
+                </p>
                 <div className="homeTypePrice">
                   <p className="homeType">
-                    <strong>Type:</strong> <span className="boldText">{product.Type || "N/A"}</span>
+                    <strong>Type:</strong> <span className="boldText">{product.Type}</span>
                   </p>
                   <p className="homeProductPrice">
-                    <span className="priceText">$ {product["Variant Price"] || "N/A"}</span>
+                    <span className="priceText">$ {product.Price}</span>
                   </p>
                 </div>
                 <button className="homeButton">Add to Cart</button>
