@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Cookies from "js-cookie";
+import ClipLoader from "react-spinners/ClipLoader";
 import "../app/styles/Cart.css";
 
 const Cart = () => {
@@ -81,7 +82,7 @@ const Cart = () => {
   return (
     <div className="cartContainer">
       <div className="cartSidebar">
-        <h3>Categories</h3>
+      
         <a href="#">All Products</a>
         <a href="#">Discounted Products</a>
         <a href="#">New Arrivals</a>
@@ -91,49 +92,66 @@ const Cart = () => {
       <div className="cartMain">
         <h2 className="cartTitle">Your Cart</h2>
 
-        {loading && <p>Loading cart items...</p>}
-        {error && <p className="error">{error}</p>}
-
-        {cartItems.length === 0 && !loading ? (
+        {loading ? (
+          <div className="spinnerContainer">
+            <ClipLoader color="#007bff" size={50} />
+          </div>
+        ) : error ? (
+          <p className="error">{error}</p>
+        ) : cartItems.length === 0 ? (
           <p>
             Your cart is empty.{" "}
-            <a href="/shop" className="cartShopLink">
+            <a href="/Products" className="cartShopLink">
               Continue shopping
             </a>
           </p>
         ) : (
-          <div className="cartItems">
-            {cartItems.map((item) => {
-              let productImage = item.productId?.["Image Src"];
+          <>
+            <div className="cartItems">
+              {cartItems.map((item) => {
+                let productImage = item.productId?.["Image Src"];
 
-              // If productImage is empty or not a valid URL, use the fallback
-              if (!productImage || !productImage.startsWith("http")) {
-                productImage = fallbackImage;
-              }
+                // If productImage is empty or not a valid URL, use the fallback
+                if (!productImage || !productImage.startsWith("http")) {
+                  productImage = fallbackImage;
+                }
 
-              return (
-                <div key={item._id} className="cartItem">
-                  <Image
-                    src={productImage}
-                    alt={item.productId?.Title || "Product Image"}
-                    width={150}
-                    height={150}
-                    onError={(e) => (e.target.src = fallbackImage)}
-                  />
-                  <div className="cartDetails">
-                    <h3 className="cartItemTitle">{item.productId?.Title || "Unknown Product"}</h3>
-                    <p className="cartBody">{item.productId?.Body || "No description available."}</p>
-                    <p className="cartPrice">
-                      Price: ₹{item.productId?.["Variant Price"] || "N/A"}
-                    </p>
-                    <button className="cartRemove" onClick={() => removeCartItem(item._id)}>
-                      Remove
-                    </button>
+                return (
+                  <div key={item._id} className="cartItem">
+                    <Image
+                      src={productImage}
+                      alt={item.productId?.Title || "Product Image"}
+                      width={150}
+                      height={150}
+                      onError={(e) => (e.target.src = fallbackImage)}
+                    />
+                    <div className="cartDetails">
+                      <h3 className="cartItemTitle">
+                        {item.productId?.Title || "Unknown Product"}
+                      </h3>
+                      <p className="cartBody">
+                        {item.productId?.Body || "No description available."}
+                      </p>
+                      <p className="cartPrice">
+                        Price: ₹{item.productId?.["Variant Price"] || "N/A"}
+                      </p>
+                      <button
+                        className="cartRemove"
+                        onClick={() => removeCartItem(item._id)}
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+
+            {/* Add the "Proceed to Checkout" button below the cart items */}
+            <div className="checkoutContainer">
+              <button className="proceedCheckout">Proceed to Checkout</button>
+            </div>
+          </>
         )}
       </div>
     </div>

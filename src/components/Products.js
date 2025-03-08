@@ -2,6 +2,7 @@
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import ClipLoader from "react-spinners/ClipLoader"; // For the loading spinner
 import "../app/styles/Products.css";
 
 const Products = () => {
@@ -131,59 +132,63 @@ const Products = () => {
         <span className="homeFilterText">Discounted Products</span>
         <span className="homeFilterText">New Arrivals</span>
         <span className="homeFilterText">Best Sellers</span>
-
-       
-
-       
-
-
-
-        
       </div>
 
       <div className="homeMain">
-      <h1 className="kariniWelcomeText">Welcome to Our Store</h1>
+        <h1 className="kariniWelcomeText">Welcome to Our Store</h1>
 
-        {loading && <p>Loading products...</p>}
-        {error && <p className="error">Error: {error}</p>}
-        {successMessage && <p className="success">{successMessage}</p>}
-
-        {filteredProducts.length > 0 ? (
-          <div className="homeProductGrid">
-            {filteredProducts.map((product, index) => (
-              <div key={index} className="homeCard">
-                <img src={product.ImageSrc} alt={product.Title} onError={handleImageError} className="homeImage" />
-                <h2 className="homeTitle">{product.Title}</h2>
-                <p className="homeBody">{product.Body.length > 60 ? product.Body.substring(0, 60) + "..." : product.Body}</p>
-                <div className="homeTypePrice">
-                  <p className="homeType"><strong>Type:</strong> <span className="boldText">{product.Type}</span></p>
-                  <p className="homeProductPrice"><span className="priceText">$ {product.Price}</span></p>
-                </div>
-                <button className="homeButton" onClick={() => addToCart(product)}>Add to Cart</button>
-              </div>
-            ))}
+        {loading ? (
+          <div className="spinnerContainer">
+            <ClipLoader color="#007bff" size={50} />
           </div>
         ) : (
-          !loading && <p>No matching products found.</p>
-        )}
+          <>
+            {error && <p className="error">Error: {error}</p>}
+            {successMessage && <p className="success">{successMessage}</p>}
 
-        {/* Cart Section */}
-        <div className="cartContainer">
-         
-          {cartItems.length > 0 ? (
-            <ul>
-              {cartItems.map((item, index) => (
-                <li key={index} className="cartItem">
-                  <p><strong>Product ID:</strong> {item.productId}</p>
-                  <p><strong>Quantity:</strong> {item.quantity}</p>
-                  <p><strong>Price:</strong> ${item.price || "N/A"}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p></p>
-          )}
-        </div>
+            {filteredProducts.length > 0 ? (
+              <div className="homeProductGrid">
+                {filteredProducts.map((product, index) => (
+                  <div key={index} className="homeCard">
+                    <img
+                      src={product.ImageSrc}
+                      alt={product.Title}
+                      onError={handleImageError}
+                      className="homeImage"
+                    />
+                    <h2 className="homeTitle">{product.Title}</h2>
+                    <p className="homeBody">
+                      {product.Body.length > 60
+                        ? product.Body.substring(0, 60) + "..."
+                        : product.Body}
+                    </p>
+                    <div className="homeTypePrice">
+                      <p className="homeType">
+                        <strong>Type:</strong>{" "}
+                        <span className="boldText">{product.Type}</span>
+                      </p>
+                      <p className="homeProductPrice">
+                        <span className="priceText">$ {product.Price}</span>
+                      </p>
+                    </div>
+                    <button
+                      className="homeButton"
+                      onClick={() => addToCart(product)}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>No matching products found.</p>
+            )}
+            {/* Add the Proceed to Checkout button below the products */}
+            <div className="checkoutContainer">
+              <button className="proceedCheckout">Proceed to Checkout</button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
