@@ -6,9 +6,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <ProductsProvider> {/* ✅ Wrap everything inside ProductsProvider */}
+        <ProductsProvider> 
           <Navbar />
-          {children} {/* ✅ This renders the page content */}
+          {children} 
         </ProductsProvider>
       </body>
     </html>

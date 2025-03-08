@@ -11,7 +11,7 @@ export default function Login() {
     password: "",
   });
 
-  // Handle login
+ 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -27,8 +27,8 @@ export default function Login() {
 
       if (response.ok) {
         alert("Login successful");
-        Cookies.set("token", data.token,); // ✅ Store token in cookies
-        router.push("/Products"); // Redirect to Products page
+        Cookies.set("token", data.token,); 
+        router.push("/Products"); 
       } else {
         alert(data.message || "Invalid credentials. Please try again.");
       }

@@ -10,7 +10,7 @@
   padding: 20px;
 }
 
-/* "Welcome to our Shop" Text Styling */
+
 .karini-title {
   font-size: 42px;
   font-weight: 900;
@@ -32,7 +32,6 @@
   color: black;
 }
 
-/* Signup & Login Container */
 .karini-forms-container {
   display: flex;
   justify-content: space-between;
@@ -45,7 +44,7 @@
   margin-top: 20px;
 }
 
-/* Common Box Styling */
+
 .karini-box {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -74,7 +73,7 @@
   margin-bottom: 10px;
 }
 
-/* Input Fields */
+
 .karini-input {
   width: 100%;
   padding: 12px;
@@ -91,7 +90,7 @@
   color: rgba(0, 0, 0, 0.7);
 }
 
-/* Buttons */
+
 .karini-button {
   width: 100%;
   padding: 12px;
@@ -110,7 +109,7 @@
   background-color: #e68a00;
 }
 
-/* Responsive Design */
+
 @media (max-width: 1024px) {
   .karini-title {
       font-size: 36px;

@@ -1,6 +1,6 @@
 const Cart = require("../models/cart-model");
 
-// ✅ GET all cart items
+
 exports.getCartItems = async (req, res) => {
   try {
     const cartItems = await Cart.find({ userId: req.user.id }).populate("productId userId");
@@ -13,7 +13,6 @@ exports.getCartItems = async (req, res) => {
   }
 };
 
-// ✅ POST: Add an item to the cart
 exports.addCartItem = async (req, res) => {
   try {
     const {  productId, quantity, address } = req.body;
@@ -25,13 +24,13 @@ exports.addCartItem = async (req, res) => {
     const newItem = new Cart({ userId: req.user.id, productId, quantity, address });
     await newItem.save();
     
-    res.status(201).json({ message: "Item added to cart", cart: newItem });
+    res.status(201).json({ message: "Item added to the cart", cart: newItem });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
 
-// ✅ PUT: Update cart item
+
 exports.updateCartItem = async (req, res) => {
   try {
     const { quantity, address } = req.body;
@@ -55,7 +54,7 @@ exports.updateCartItem = async (req, res) => {
   }
 };
 
-// ✅ DELETE: Remove cart item
+
 exports.deleteCartItem = async (req, res) => {
   try {
     const deletedItem = await Cart.findByIdAndDelete(req.params.id);

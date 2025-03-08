@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const fs = require("fs");
 const dotenv = require("dotenv");
-const Product = require("./models/itemModel.js"); // Ensure this matches your model file name
+const Product = require("./models/itemModel.js"); 
 
-dotenv.config(); // Load environment variables
+dotenv.config(); 
 
 const connectDB = async () => {
   try {
@@ -20,8 +20,8 @@ const importData = async () => {
   try {
     await connectDB(); // Connect to DB
 
-    const jsonData = JSON.parse(fs.readFileSync("./data.json", "utf-8")); // ✅ Use correct relative path
-    await Product.insertMany(jsonData); // Insert into DB
+    const jsonData = JSON.parse(fs.readFileSync("./data.json", "utf-8"));
+    await Product.insertMany(jsonData); 
 
     console.log("✅ Data Imported Successfully!");
     process.exit();
@@ -31,5 +31,4 @@ const importData = async () => {
   }
 };
 
-// **Run Seeder**
 importData();

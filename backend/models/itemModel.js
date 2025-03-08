@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
     body: {},
     vendor: {},
     tags: {},
-    options: [{}], // Array of objects, allowing flexible structures
+    options: [{}], 
     variant: {
         sku: {},
         grams: {},
@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
         compareAtPrice: {}
     },
     imageSrc: {}
-}, { strict: false }); // Allow any additional fields
+}, { strict: false }); 
 
 const Product = mongoose.model("items", productSchema);
 module.exports = Product;

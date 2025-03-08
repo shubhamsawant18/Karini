@@ -43,7 +43,7 @@ const Navbar = () => {
         <span className="brand-name">KARINI AI</span>
       </div>
 
-      {/* Search Bar */}
+     
       <form className="search-bar" onSubmit={handleSearch}>
         <input
           type="text"

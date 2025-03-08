@@ -4,20 +4,20 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "cdn.shopify.com", // ✅ Allow external Shopify images
+        hostname: "cdn.shopify.com",
       },
     ],
   },
     async redirects() {
       return [
         {
-          source: "/", // Redirect from root
-          destination: "/Home", // Go to /Home
-          permanent: true, // 301 redirect
+          source: "/", 
+          destination: "/Home",
+          permanent: true, 
         },
       ];
     },
   };
   
-  export default nextConfig; // ✅ Correct for .mjs
+  export default nextConfig; 
   
