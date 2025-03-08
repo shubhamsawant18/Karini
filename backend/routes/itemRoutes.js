@@ -3,6 +3,7 @@ const {
     postProduct,
     updateProduct,
     deleteProduct,
+    getProductsbychat,
 } = require('../controllers/itemController');
 const express = require('express');
 const validateToken = require('../middleware/isLoggedIn');
@@ -15,5 +16,6 @@ router.post('/', postProduct);
 router.put('/:id',updateProduct)
 
 router.delete('/:id',deleteProduct)
+router.post ('/chats',getProductsbychat)
 
 module.exports = router;

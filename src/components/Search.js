@@ -18,21 +18,15 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/products/chats", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message: searchQuery }),
-        });
+        const response = await fetch("http://localhost:5000/api/products");
 
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
         const data = await response.json();
-        console.log(data);
-        if (data && Array.isArray(data)) {
-          const processedProducts = data.map((product) => ({
+
+        if (data.data && Array.isArray(data.data)) {
+          const processedProducts = data.data.map((product) => ({
             id: product._id,
             Title: product.Title || "No Title Available",
             Body: product.Body || "No description available",
@@ -152,9 +146,9 @@ const Products = () => {
             {error && <p className="error">Error: {error}</p>}
             {successMessage && <p className="success">{successMessage}</p>}
 
-            {products.length > 0 ? (
+            {filteredProducts.length > 0 ? (
               <div className="homeProductGrid">
-                {products.map((product, index) => (
+                {filteredProducts.map((product, index) => (
                   <div key={index} className="homeCard">
                     <img
                       src={product.ImageSrc}
