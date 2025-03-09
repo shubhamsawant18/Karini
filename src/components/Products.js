@@ -2,12 +2,12 @@
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import ClipLoader from "react-spinners/ClipLoader"; // For the loading spinner
+import ClipLoader from "react-spinners/ClipLoader";
 import "../app/styles/Products.css";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]); // State for cart items
+  const [cartItems, setCartItems] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
@@ -189,7 +189,7 @@ const Products = () => {
             ) : (
               <p>No matching products found.</p>
             )}
-            {/* Add the Proceed to Checkout button below the products */}
+          
             <div className="checkoutContainer">
               <button className="proceedCheckout">Proceed to Checkout</button>
             </div>

@@ -9,7 +9,7 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const fallbackImage = "/image/tshirt.webp"; // Fallback image
+  const fallbackImage = "/image/tshirt.webp"; 
 
   useEffect(() => {
     fetchCartItems();
@@ -71,7 +71,7 @@ const Cart = () => {
         throw new Error("Failed to remove item from cart");
       }
 
-      // Remove the item from the cart in state
+
       setCartItems(cartItems.filter((item) => item._id !== id));
     } catch (err) {
       console.error("Error removing item:", err);
@@ -111,7 +111,7 @@ const Cart = () => {
               {cartItems.map((item) => {
                 let productImage = item.productId?.["Image Src"];
 
-                // If productImage is empty or not a valid URL, use the fallback
+              
                 if (!productImage || !productImage.startsWith("http")) {
                   productImage = fallbackImage;
                 }
@@ -147,7 +147,7 @@ const Cart = () => {
               })}
             </div>
 
-            {/* Add the "Proceed to Checkout" button below the cart items */}
+           
             <div className="checkoutContainer">
               <button className="proceedCheckout">Proceed to Checkout</button>
             </div>

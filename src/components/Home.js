@@ -1,25 +1,25 @@
 "use client";
 import { useState } from "react";
-import "../app/styles/Home.css"; // Ensure correct CSS path
+import "../app/styles/Home.css"; 
 import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
 
-  // Signup state
+
   const [signupData, setSignupData] = useState({
     username: "",
     email: "",
     password: "",
   });
 
-  // Login state
+ 
   const [loginData, setLoginData] = useState({
     usernameOrEmail: "",
     password: "",
   });
 
-  // Handle signup
+
   const handleSignup = async (e) => {
     e.preventDefault();
 
@@ -36,7 +36,7 @@ export default function Home() {
 
       if (response.ok) {
         alert("User created successfully");
-        router.push("/login"); // Redirect to login page
+        router.push("/login"); 
       } else {
         alert(data.message || "User already exists. Please login.");
       }
@@ -46,7 +46,7 @@ export default function Home() {
     }
   };
 
-  // Handle login
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -63,7 +63,7 @@ export default function Home() {
 
       if (response.ok) {
         alert("Login successful");
-        router.push("http://localhost:3000/Products"); // Redirect to Products page
+        router.push("http://localhost:3000/Products"); 
       } else {
         alert(data.message || "Invalid credentials. Please try again.");
       }
@@ -77,7 +77,7 @@ export default function Home() {
     <div className="karini-page-container">
       <h1 className="karini-title">Welcome to our Shop</h1>
       <div className="karini-forms-container">
-        {/* Signup Box */}
+        
         <div className="karini-box karini-signup-box">
           <h2 className="karini-header">Sign Up</h2>
           <p className="karini-text">Join us today!</p>
